@@ -2,8 +2,6 @@
 
 unsigned factorial_cycle(unsigned num) {
     unsigned new_num = 1;
-    if (num < 0)
-        return -1;
     if (num == 0)
         return 1;
     for (int i = 1; i <= num; ++i)
@@ -12,8 +10,6 @@ unsigned factorial_cycle(unsigned num) {
 }
 
 unsigned factorial_recursion(unsigned num) {
-    if (num < 0)
-        return 0;
     if (num == 0)
         return 1;
     else
