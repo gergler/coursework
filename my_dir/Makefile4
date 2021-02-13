@@ -1,0 +1,17 @@
+CC=g++
+SOURCES=$(wildcard *.cpp)
+OBJECTS=$(putsubst %.cpp,%.o,$(SOURCES))
+EXECUTABLE=project
+
+all:
+	$(CC) $(SOURCES) -o $(EXECUTABLE)
+
+.cpp.o:
+	$(CC) $^ -c -MD
+
+include $(wildcard *.d)
+
+.PHONY: clean
+
+clean:
+	rm *.d *.o
