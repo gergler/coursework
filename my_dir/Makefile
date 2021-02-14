@@ -4,11 +4,14 @@ OBJ=$(patsubst %.cpp,%.o,$(SOURCES))
 EXEC=project
 
 $(EXEC): $(OBJ)
-        $(CC) -o $@ $^ -MD
+        $(CC) -o $@ $^
+
+%.o: %.cpp
+        $(CC) -c -MD $<
 
 include $(wildcard *.d)
 
-.PHONY: clean
+.PHONY: clean $(EXEC)
 
 clean:
         rm -f *.d
