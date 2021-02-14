@@ -1,4 +1,0 @@
-CC=g++
-
-factorial: main.o functions.o
-	$(CC)  -o factorial main.o functions.o
