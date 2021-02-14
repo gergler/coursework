@@ -1,6 +1,7 @@
 CC=g++
 SOURCES=$(wildcard *.cpp)
-OBJ=$(patsubst %.cpp,%.o,$(SOURCES))
+OBJS=$(SOURCES:%.cpp=%.o)
+DEPS=$(SOURCES:%.cpp=%.d)
 EXEC=project
 
 .PHONY: clean all
@@ -8,13 +9,14 @@ EXEC=project
 all: $(EXEC)
 
 %.o: %.cpp
-        $(CC) -c -MD $<
+	$(CC) -c -MMD $<
 
-$(EXEC): $(OBJ)
-        $(CC) -o $@ $^
+$(EXEC): $(OBJS)
+	$(CC) -o $@ $^
 
-include $(wildcard *.d)
+-include $(DEPS)
 
 clean:
-        rm -f *.d
-        rm -f $(OBJ)
+	-rm -f $(DEPS)
+	-rm -f $(OBJS)
+
